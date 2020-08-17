@@ -1,5 +1,7 @@
 package DependencyPathExplorer;
 
+import java.util.Arrays;
+
 public class NgramToken {
     private String word;
     private String pos;
@@ -16,11 +18,16 @@ public class NgramToken {
     }
 
     public NgramToken(int indexInSentence,String ... args) {
-        this.word = args[0];
-        this.pos = args[1];
-        this.depLabel = args[2];
-        this.headIndex = Integer.parseInt(args[3]);
-        this.indexInSentence = indexInSentence;
+        try {
+            this.word = args[0];
+            this.pos = args[1];
+            this.depLabel = args[2];
+            this.headIndex = Integer.parseInt(args[3]);
+            this.indexInSentence = indexInSentence;
+        }catch(NumberFormatException e){
+//            System.out.println("NumberFormatException: Printing args: "+ Arrays.toString(args));
+            throw e;
+        }
     }
 
     public String getWord() {
